@@ -1,9 +1,9 @@
 import { Repository } from 'typeorm';
-import { CreateUserDto } from 'src/modules/user/domain/dtos/createUser.dto';
-import { UserInterface } from 'src/modules/user/domain/interfaces/user.interface';
 import { User } from '../../entities/user.entity';
 import { Inject } from '@nestjs/common';
 import { UsersRepositoryContract } from 'src/modules/user/domain/contracts/usersRepository.contract';
+import { CreateUserInputDto } from 'src/modules/user/domain/dtos/createUserInput.dto';
+import { UpdateUserInputDto } from 'src/modules/user/domain/dtos/updateUserInput.dto';
 
 export class UsersRepository implements UsersRepositoryContract {
   constructor(
@@ -12,38 +12,50 @@ export class UsersRepository implements UsersRepositoryContract {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  public async create(createUser: CreateUserDto): Promise<UserInterface> {
+  public async create(createUser: CreateUserInputDto): Promise<User> {
     const user = this.ormRepository.create(createUser);
     return await this.ormRepository.save(user);
   }
 
-  public async save(user: UserInterface): Promise<UserInterface> {
+  public async save(user: User): Promise<User> {
     return await this.ormRepository.save(user);
   }
 
-  public async findAll(): Promise<UserInterface[]> {
+  public async update(
+    user: User,
+    updateUser: UpdateUserInputDto
+  ): Promise<User> {
+    await this.ormRepository.update(user, {
+      ...updateUser,
+    });
+    return this.ormRepository.create({ ...user, ...updateUser });
+  }
+
+  public async findAll(): Promise<User[]> {
     return await this.ormRepository.find();
   }
 
-  public async findByName(name: string): Promise<UserInterface | null> {
+  public async findByName(name: string): Promise<User | null> {
     return await this.ormRepository.findOneBy({
       name,
     });
   }
 
-  public async findById(id: string): Promise<UserInterface | null> {
+  public async findById(id: string): Promise<User | null> {
     return await this.ormRepository.findOneBy({
       id,
     });
   }
 
-  public async findByEmail(email: string): Promise<UserInterface | null> {
+  public async findByEmail(email: string): Promise<User | null> {
     return await this.ormRepository.findOneBy({
       email,
     });
   }
 
-  public async remove(user: UserInterface): Promise<void> {
-    await this.ormRepository.remove(user);
+  public async remove(user: User): Promise<boolean> {
+    const deleted = await this.ormRepository.remove(user);
+    if (deleted) return true;
+    return false;
   }
 }

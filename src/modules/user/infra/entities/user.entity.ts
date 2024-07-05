@@ -1,9 +1,15 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserInterface } from '../../domain/interfaces/user.interface';
 
 @ObjectType()
-@Entity()
+@Entity('users')
 export class User implements UserInterface {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)
@@ -14,4 +20,10 @@ export class User implements UserInterface {
 
   @Column()
   email: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

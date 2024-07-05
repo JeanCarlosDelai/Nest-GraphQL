@@ -1,8 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from '../domain/dtos/createUser.dto';
-import UserResponseMapper from '../domain/mappings/UserResponseMapper';
-import { UserRespondeDTO } from '../domain/dtos/userReponse.dto';
+import { CreateUserInputDto } from '../domain/dtos/createUserInput.dto';
 import { UsersRepositoryContract } from '../domain/contracts/usersRepository.contract';
+import { User } from '../infra/entities/user.entity';
 
 @Injectable()
 export class CreateUserService {
@@ -11,7 +10,7 @@ export class CreateUserService {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  async createUser(createUser: CreateUserDto): Promise<UserRespondeDTO> {
+  async createUser(createUser: CreateUserInputDto): Promise<User> {
     const emailExists = await this.usersRepository.findByEmail(
       createUser.email
     );
@@ -20,8 +19,6 @@ export class CreateUserService {
       throw new BadRequestException('EMAIL_ALREADY_USED');
     }
 
-    const response = await this.usersRepository.create(createUser);
-
-    return UserResponseMapper.response(response);
+    return await this.usersRepository.create(createUser);
   }
 }
