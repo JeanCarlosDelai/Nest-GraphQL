@@ -15,15 +15,19 @@ export class User implements UserInterface {
   @Field(() => ID)
   id: string;
 
+  @Field()
   @Column()
   name: string;
 
+  @Field()
   @Column()
   email: string;
 
+  @Field()
   @CreateDateColumn()
   created_at: Date;
 
+  @Field()
   @UpdateDateColumn()
   updated_at: Date;
 }
