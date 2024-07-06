@@ -9,7 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, disableErrorMessages: false })
   );
-  await app.listen(config.PORT);
-  logger.log(`API Nest-GrapghQl it ruuning: ${config.PORT}`);
+  await app.listen(config.API_PORT);
+  logger.log(`API Nest-GrapghQl it ruuning: ${config.API_PORT}`);
 }
 bootstrap();
