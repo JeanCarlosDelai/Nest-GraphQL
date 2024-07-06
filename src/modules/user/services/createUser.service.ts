@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserInputDto } from '../domain/dtos/createUserInput.dto';
 import { UsersRepositoryContract } from '../domain/contracts/usersRepository.contract';
 import { User } from '../infra/entities/user.entity';
+import { EMAIL_ALREADY_USED } from 'src/shared/consts/error.consts';
 
 @Injectable()
 export class CreateUserService {
@@ -16,7 +17,7 @@ export class CreateUserService {
     );
 
     if (emailExists) {
-      throw new BadRequestException('EMAIL_ALREADY_USED');
+      throw new BadRequestException(EMAIL_ALREADY_USED);
     }
 
     return await this.usersRepository.create(createUser);

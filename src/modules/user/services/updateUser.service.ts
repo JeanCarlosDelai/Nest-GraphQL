@@ -6,6 +6,10 @@ import {
 import { UsersRepositoryContract } from '../domain/contracts/usersRepository.contract';
 import { User } from '../infra/entities/user.entity';
 import { UpdateUserInputDto } from '../domain/dtos/updateUserInput.dto';
+import {
+  EMAIL_ALREADY_USED,
+  USER_NOT_FOUND,
+} from 'src/shared/consts/error.consts';
 
 @Injectable()
 export class UpdateUserService {
@@ -18,7 +22,7 @@ export class UpdateUserService {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException(USER_NOT_FOUND);
     }
 
     if (updateUser.email) {
@@ -27,7 +31,7 @@ export class UpdateUserService {
       );
 
       if (emailExists) {
-        throw new BadRequestException('EMAIL_ALREADY_USED');
+        throw new BadRequestException(EMAIL_ALREADY_USED);
       }
     }
 

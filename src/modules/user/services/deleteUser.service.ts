@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersRepositoryContract } from '../domain/contracts/usersRepository.contract';
+import { USER_NOT_FOUND } from 'src/shared/consts/error.consts';
 
 @Injectable()
 export class DeleteUserService {
@@ -12,7 +13,7 @@ export class DeleteUserService {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException(USER_NOT_FOUND);
     }
 
     return await this.usersRepository.remove(user);
