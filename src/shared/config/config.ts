@@ -1,9 +1,10 @@
 import * as env from 'env-var';
 
 export const config = {
-  PORT: env.get('PORT').required().asIntPositive(),
-  DATABASE_PORT: env.get('DATABASE_PORT').required().asString(),
-  USER: env.get('USER').required().asString(),
-  PASSWORD: env.get('PASSWORD').required().asString(),
-  DATABASE: env.get('DATABASE').required().asString(),
+  API_PORT: env.get('API_PORT').default(3000).required().asIntPositive(),
+  DB_HOST: env.get('DB_HOST').required().asString(),
+  DB_PORT: env.get('DB_PORT').required().asIntPositive(),
+  DB_USER: env.get('DB_USER').required().asString(),
+  DB_PASSWORD: env.get('DB_PASSWORD').required().asString(),
+  DB_NAME: env.get('DB_NAME').required().asString(),
 };
