@@ -1,9 +1,16 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:latest
+
+  api:
+    container_name: nest_api
+    build: .
+    ports:
+      - 3000:3000
+
+  database-postgres:
     container_name: postgres_db
+    image: postgres
     environment:
       POSTGRES_USER: jean
       POSTGRES_PASSWORD: root
@@ -12,6 +19,12 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
   postgres_data:
