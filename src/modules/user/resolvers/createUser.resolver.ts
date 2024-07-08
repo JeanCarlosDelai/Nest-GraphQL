@@ -3,7 +3,7 @@ import { CreateUserService } from '../services/createUser.service';
 import { CreateUserInputDto } from '../domain/dtos/createUserInput.dto';
 import { User } from '../infra/entities/user.entity';
 
-@Resolver('users')
+@Resolver('User')
 export class CreateUserResolver {
   // eslint-disable-next-line prettier/prettier
   constructor(private createUserService: CreateUserService) { }

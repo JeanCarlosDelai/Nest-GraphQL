@@ -1,11 +1,11 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { User } from '../infra/entities/user.entity';
 import { UpdateUserService } from '../services/updateUser.service';
 import { UpdateUserInputDto } from '../domain/dtos/updateUserInput.dto';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/shared/guards/auth.guard';
+import { User } from '../infra/entities/user.entity';
 
-@Resolver('users')
+@Resolver('UserDTO')
 export class UpdateUserResolver {
   // eslint-disable-next-line prettier/prettier
   constructor(private updateUserService: UpdateUserService) { }

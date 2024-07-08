@@ -7,11 +7,11 @@ import {
   INCORRECT_USER_OR_PASSWORD,
   USER_NOT_FOUND,
 } from 'src/shared/consts/error.consts';
-import { UsersRepositoryContract } from '../../domain/contracts/usersRepository.contract';
+import { UsersRepositoryContract } from '../../../user/domain/contracts/usersRepository.contract';
 import { compareSync } from 'bcrypt';
-import { AuthResponseDTO } from '../domain/dtos/authResponse.dto';
-import { AuthInputDto } from '../domain/dtos/authInput.dto';
-import { User } from '../../infra/entities/user.entity';
+import { AuthDTO } from '../dtos/auth.dto';
+import { AuthInputDto } from '../dtos/authInput.dto';
+import { User } from '../../../user/infra/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class AuthService {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  async auth(auth: AuthInputDto): Promise<AuthResponseDTO> {
+  async auth(auth: AuthInputDto): Promise<AuthDTO> {
     const user = await this.usersRepository.findByEmail(auth.email);
 
     if (!user) {

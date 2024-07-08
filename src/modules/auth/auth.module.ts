@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/shared/providers/typeORM/database.module';
-import { UsersRepositoryContract } from '../domain/contracts/usersRepository.contract';
-import { UsersRepository } from '../infra/repositories/implementation/usersRepository';
-import { AuthService } from './services/auth.service';
+import { UsersRepositoryContract } from '../user/domain/contracts/usersRepository.contract';
+import { UsersRepository } from '../user/infra/repositories/implementation/usersRepository';
+import { AuthService } from './domain/services/auth.service';
 import { AuthResolver } from './resolvers/auth.resolver';
-import { UserProvider } from '../infra/providers/user.provider';
+import { UserProvider } from '../user/infra/providers/user.provider';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategys/jwt.strategy';
-import { FindUserByIdService } from '../services/findUserById.service';
+import { FindUserByIdService } from '../user/services/findUserById.service';
 
 @Module({
   imports: [
