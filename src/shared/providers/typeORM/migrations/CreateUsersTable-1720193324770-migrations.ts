@@ -23,6 +23,10 @@ export class CreateUsersTable1720193324770 implements MigrationInterface {
             isUnique: true,
           },
           {
+            name: 'password',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()',

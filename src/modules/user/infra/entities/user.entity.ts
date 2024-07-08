@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { UserInterface } from '../../domain/interfaces/user.interface';
+import { hashPasswordTransform } from 'src/shared/helpers/hashPasswordTransform';
 
 @ObjectType()
 @Entity('users')
@@ -22,6 +23,11 @@ export class User implements UserInterface {
   @Field()
   @Column()
   email: string;
+
+  @Column({
+    transformer: hashPasswordTransform,
+  })
+  password: string;
 
   @Field()
   @CreateDateColumn()

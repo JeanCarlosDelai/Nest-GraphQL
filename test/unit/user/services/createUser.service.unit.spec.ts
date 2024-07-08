@@ -46,6 +46,7 @@ describe('CreateUserServiceUnit', () => {
       const inputData: CreateUserInputDto = {
         name: 'jean',
         email: 'teste@gmail.com',
+        password: '123456',
       };
       const user = MockUtils.validUser();
       mockRepository.findByEmail.mockResolvedValueOnce(null);
@@ -60,6 +61,7 @@ describe('CreateUserServiceUnit', () => {
       const inputData: CreateUserInputDto = {
         name: 'jean',
         email: 'teste@gmail.com',
+        password: '123456',
       };
       const user = MockUtils.validUser();
       mockRepository.findByEmail.mockResolvedValueOnce(user);

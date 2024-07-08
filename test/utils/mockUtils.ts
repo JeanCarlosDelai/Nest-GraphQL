@@ -6,6 +6,7 @@ export class MockUtils {
       id: '1',
       name: 'jean',
       email: 'teste@gmail.com',
+      password: '123456',
       created_at: new Date(),
       updated_at: new Date(),
     };
