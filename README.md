@@ -25,13 +25,13 @@ Repositório básico demonstrando o funcionamento de uma API GraphQL com Nest.
 - Clone o repositorio na sua máquina local.
 
 ```sh
-git clone https://github.com/JeanCarlosDelai/Nest-Cognito.git
+git clone https://github.com/JeanCarlosDelai/Nest-GraphQL.git
 ```
 
 - Acesse a pasta clonada
 
 ```sh
-cd Nest-Cognito
+cd Nest-GraphQL
 ```
 
 - Criar arquivo .env com base no arquivo de exemplo, para configuração de variáveis de ambiente:
