@@ -12,4 +12,9 @@ export class CreateUserInputDto {
   @IsString()
   @IsNotEmpty()
   readonly email: string;
+
+  @Field()
+  @IsString()
+  @IsNotEmpty()
+  readonly password: string;
 }

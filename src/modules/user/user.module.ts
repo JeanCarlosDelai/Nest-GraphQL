@@ -11,6 +11,8 @@ import { UpdateUserService } from './services/updateUser.service';
 import { UpdateUserResolver } from './resolvers/updateUser.resolver';
 import { DeleteUserResolver } from './resolvers/deleteUser.resolver';
 import { DeleteUserService } from './services/deleteUser.service';
+import { FindUserByIdService } from './services/findUserById.service';
+import { FindUserByIdResolver } from './resolvers/findUserById.resolver';
 
 @Module({
   imports: [DatabaseModule],
@@ -24,6 +26,8 @@ import { DeleteUserService } from './services/deleteUser.service';
     FindAllUsersResolver,
     UpdateUserResolver,
     DeleteUserResolver,
+    FindUserByIdService,
+    FindUserByIdResolver,
     {
       provide: UsersRepositoryContract,
       useClass: UsersRepository,

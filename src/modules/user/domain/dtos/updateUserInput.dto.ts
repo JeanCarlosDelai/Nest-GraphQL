@@ -13,4 +13,9 @@ export class UpdateUserInputDto {
   @IsEmail()
   @IsOptional()
   readonly email?: string;
+
+  @Field({ nullable: true })
+  @IsString()
+  @IsOptional()
+  readonly password?: string;
 }
