@@ -1,4 +1,4 @@
-<h1 align="center"> Nest-Cognito </h1>
+<h1 align="center"> Nest-GraphQL </h1>
 
 ## 📄 Descrição do projeto
 
