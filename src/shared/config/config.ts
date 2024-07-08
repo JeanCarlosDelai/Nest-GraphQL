@@ -7,4 +7,6 @@ export const config = {
   DB_USER: env.get('DB_USER').required().asString(),
   DB_PASSWORD: env.get('DB_PASSWORD').required().asString(),
   DB_NAME: env.get('DB_NAME').required().asString(),
+  JWT_SECRET: env.get('JWT_SECRET').required().asString(),
+  JWT_EXPIRES_IN: env.get('JWT_EXPIRES_IN').required().asString(),
 };
